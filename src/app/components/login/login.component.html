@@ -1,0 +1,107 @@
+<form class="mx-5 mt-3">
+  <div>
+    <p class="naslov mb-0 mx-auto">Dobro došli :)</p>
+  </div>
+
+  <div>
+    <p class="naslov1 mb-1 mx-auto">Drago nam je što koristite naše usluge</p>
+  </div>
+
+  <div class="text-center mt-5">
+    <p class="text_2 mx-auto">
+      Da biste ostali povezani s nama, prijavite se sa svojim osobnim podacima
+      putem e-pošte/korisničkog imena i lozinke
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="card mx-auto mt-1 row">
+      <form class="my-auto" [formGroup]="form" (ngSubmit)="onSubmitlogin()">
+        <h3 class="text-center pb-2 pb-5">Prijava</h3>
+        <div class="text-center">
+          <div class="input mx-auto">
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              formControlName="email"
+              type="text"
+              class="input-field"
+              [(ngModel)]="placeholder"
+              required
+            />
+
+            <label class="input-label">Korisničko ime / Email</label>
+          </div>
+          <div *ngIf="submitted && f.email.errors">
+            <div style="color: red" *ngIf="f.email.errors.required">
+              Email is required
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <div class="input mx-auto mt-3">
+            <input
+              [ngClass]="{
+                'is-invalid': submitted && f.lozinka.errors
+              }"
+              formControlName="lozinka"
+              type="password"
+              class="input-field"
+              required
+            />
+
+            <label class="input-label">Lozinka</label>
+          </div>
+          <div *ngIf="submitted && f.lozinka.errors">
+            <div style="color: red" *ngIf="f.lozinka.errors.required">
+              Lozinka je obavezna
+            </div>
+            <div style="color: red" *ngIf="f.lozinka.errors.minlength">
+              Lozinka mora sadržavati barem 6 znakova
+            </div>
+          </div>
+
+          <div class="text-center">
+            <div class="input mx-auto mt-3">
+              <input
+                [ngClass]="{
+                  'is-invalid': submitted && f.potvrdaLozinke.errors
+                }"
+                formControlName="potvrdaLozinke"
+                type="password"
+                class="input-field"
+                required
+              />
+
+              <label class="input-label">Potvrda lozinke</label>
+            </div>
+            <div *ngIf="submitted && f.potvrdaLozinke.errors">
+              <div style="color: red" *ngIf="f.potvrdaLozinke.errors.required">
+                Potvrda lozinke je obavezna
+              </div>
+              <div style="color: red" *ngIf="f.potvrdaLozinke.errors.mustMatch">
+                Lozinke se ne podudaraju
+              </div>
+            </div>
+
+            <br /><br />
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="myButton mt-5 mx-auto mb-3 text-center">
+            Prijava
+          </button>
+        </div>
+      </form>
+      <hr class="mx-auto mt-3" />
+
+      <div>
+        <p>
+          Niste prijavljeni?
+          <a href="register">Registrirajte se!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</form>
